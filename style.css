@@ -1,0 +1,33 @@
+body {
+  background-color: #f5f0ff; /* 薄い紫 */
+  font-family: "Hiragino Kaku Gothic ProN", sans-serif;
+  color: #333;
+  text-align: center;
+}
+
+h1 {
+  color: #7a5cff; /* 少し濃い紫 */
+  margin-top: 50px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  margin: 20px 0;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+  background-color: #a78bfa; /* 紫ボタン */
+  padding: 10px 20px;
+  border-radius: 10px;
+  display: inline-block;
+}
+
+a:hover {
+  background-color: #7a5cff; /* ホバーで濃く */
+}
