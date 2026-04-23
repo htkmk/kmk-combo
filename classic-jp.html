@@ -23,22 +23,22 @@
   <label>SAゲージ：</label>
   <select id="sa">
     <option value="">すべて</option>
-    <option value="０ゲージ">０ゲージ</option>
-    <option value="１ゲージ">１ゲージ</option>
-    <option value="２ゲージ">２ゲージ</option>
-    <option value="３ゲージ">３ゲージ</option>
+    <option value="0">０ゲージ</option>
+    <option value="1">１ゲージ</option>
+    <option value="2">２ゲージ</option>
+    <option value="3">３ゲージ</option>
   </select>
 
   <label>ドライブゲージ：</label>
   <select id="drive">
     <option value="">すべて</option>
-    <option value="０本">０本</option>
-    <option value="１本">１本</option>
-    <option value="２本">２本</option>
-    <option value="３本">３本</option>
-    <option value="４本">４本</option>
-    <option value="５本">５本</option>
-    <option value="６本">６本</option>
+    <option value="0">０本</option>
+    <option value="1">１本</option>
+    <option value="2">２本</option>
+    <option value="3">３本</option>
+    <option value="4">４本</option>
+    <option value="5">５本</option>
+    <option value="6">６本</option>
   </select>
 
   <hr>
@@ -51,24 +51,24 @@
     const combos = [
       {
         position: "中央",
-        sa: "０ゲージ",
-        drive: "０本",
+        sa: 0,
+        drive: 0,
         combo: "近A > 近B > 必殺技",
         note: "基本コンボ"
       },
       {
         position: "端背負わせ",
-        sa: "１ゲージ",
-        drive: "２本",
+        sa: 1,
+        drive: 2,
         combo: "2A > 2B > SA1",
-        note: "端用コンボ"
+        note: "ドライブ2本以上で可能"
       },
       {
         position: "端背負わせ付近",
-        sa: "２ゲージ",
-        drive: "３本",
+        sa: 2,
+        drive: 3,
         combo: "ジャンプ攻撃 > 近A > 必殺技 > SA2",
-        note: "火力重視"
+        note: "ドライブ3本以上で可能"
       }
     ];
 
@@ -79,8 +79,8 @@
 
       const filtered = combos.filter(c => {
         return (position === "" || c.position === position) &&
-               (sa === "" || c.sa === sa) &&
-               (drive === "" || c.drive === drive);
+               (sa === "" || Number(sa) >= c.sa) &&
+               (drive === "" || Number(drive) >= c.drive);
       });
 
       const result = document.getElementById("result");
@@ -94,8 +94,8 @@
         <div class="combo-card">
           <h2>${c.combo}</h2>
           <p>位置: ${c.position}</p>
-          <p>SAゲージ: ${c.sa}</p>
-          <p>ドライブゲージ: ${c.drive}</p>
+          <p>必要SAゲージ: ${c.sa}</p>
+          <p>必要ドライブゲージ: ${c.drive}</p>
           <p>${c.note}</p>
         </div>
       `).join("");
