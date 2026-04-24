@@ -105,10 +105,10 @@
       result.innerHTML = filtered.map(c => `
         <div class="combo-card">
           <h2>${c.combo}</h2>
-          <p>始動技: ${c.starter.join(" / ")}</p>
           <p>位置: ${c.position.join(" / ")}</p>
-          <p>必要SAゲージ: ${c.sa}</p>
           <p>必要ドライブゲージ: ${c.drive}</p>
+          <p>必要SAゲージ: ${c.sa}</p>
+          <p>始動技: ${c.starter.join(" / ")}</p>
           <p>${c.note}</p>
         </div>
       `).join("");
