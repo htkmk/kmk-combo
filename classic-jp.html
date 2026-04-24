@@ -10,13 +10,6 @@
 
   <h1>クラシックJP コンボ</h1>
 
-  <label>始動技：</label>
-  <select id="starter">
-    <option value="">すべて</option>
-    <option value="インパクトパニカン">インパクトパニカン</option>
-    <option value="スタン">スタン</option>
-  </select>
-
   <label>位置：</label>
   <select id="position">
     <option value="">すべて</option>
@@ -27,16 +20,7 @@
     <option value="端背負い">端背負い</option>
   </select>
 
-  <label>SAゲージ：</label>
-  <select id="sa">
-    <option value="">すべて</option>
-    <option value="0">０ゲージ</option>
-    <option value="1">１ゲージ</option>
-    <option value="2">２ゲージ</option>
-    <option value="3">３ゲージ</option>
-  </select>
-
-  <label>ドライブゲージ：</label>
+    <label>ドライブゲージ：</label>
   <select id="drive">
     <option value="">すべて</option>
     <option value="0">０本</option>
@@ -48,6 +32,22 @@
     <option value="6">６本</option>
   </select>
 
+  <label>SAゲージ：</label>
+  <select id="sa">
+    <option value="">すべて</option>
+    <option value="0">０ゲージ</option>
+    <option value="1">１ゲージ</option>
+    <option value="2">２ゲージ</option>
+    <option value="3">３ゲージ</option>
+  </select>
+
+    <label>始動技：</label>
+  <select id="starter">
+    <option value="">すべて</option>
+    <option value="インパクトパニカン">インパクトパニカン</option>
+    <option value="スタン">スタン</option>
+  </select>
+
   <hr>
 
   <div id="result"></div>
@@ -57,12 +57,12 @@
   <script>
     const combos = [
       {
-        starter: "インパクトパニカン",
+        combo: "遅らせ5大P > 強ストリボーグ > 中トルバラン > 強トリグラフ",
         position: "中央",
-        sa: 0,
         drive: 0,
-        combo: "近A > 近B > 必殺技",
-        note: "基本コンボ"
+        sa: 0,
+        starter: "インパクトパニカン",
+        note: "インパクトパ二カン時にDゲージを使うには少ない時はこれ一択。各種設置が安全にできる。"
       },
       {
         starter: "インパクトパニカン",
