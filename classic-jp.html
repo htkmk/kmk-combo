@@ -21,14 +21,14 @@
   </select>
 
   <label>使用用途：</label>
-<select id="purpose">
-  <option value="">すべて</option>
-  <option value="ダメージ重視">ダメージ重視</option>
-  <option value="状況重視">状況重視</option>
-  <option value="運び重視">運び重視</option>
-</select>
+  <select id="purpose">
+    <option value="">すべて</option>
+    <option value="ダメージ重視">ダメージ重視</option>
+    <option value="状況重視">状況重視</option>
+    <option value="運び重視">運び重視</option>
+  </select>
 
-    <label>ドライブゲージ：</label>
+  <label>ドライブゲージ：</label>
   <select id="drive">
     <option value="">すべて</option>
     <option value="0">０本</option>
@@ -49,7 +49,7 @@
     <option value="3">３ゲージ</option>
   </select>
 
-    <label>始動技：</label>
+  <label>始動技：</label>
   <select id="starter">
     <option value="">すべて</option>
     <option value="インパクトパニカン">インパクトパニカン</option>
@@ -136,7 +136,6 @@
         starter: ["インパクトパニカン"],
         note: "ダメージ。4ゲージとSA3を犠牲に画面端を背負った状態から高火力を出す、見栄えのいいリーサル限定コンボ。"
       }
-      
     ];
 
     function renderCombos() {
@@ -169,7 +168,7 @@
           <p>必要ドライブゲージ: ${c.drive}</p>
           <p>必要SAゲージ: ${c.sa}</p>
           <p>始動技: ${c.starter.join(" / ")}</p>
-          <p>${c.note}</p>
+          <p class="note">${c.note}</p>
         </div>
       `).join("");
     }
