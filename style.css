@@ -1,13 +1,36 @@
 body {
-  background-color: #f5f0ff; /* 薄い紫 */
+  background-color: #f5f0ff;
   font-family: "Hiragino Kaku Gothic ProN", sans-serif;
   color: #333;
   text-align: center;
+  margin: 0;
+  padding: 0 20px;
 }
 
 h1 {
-  color: #7a5cff; /* 少し濃い紫 */
+  color: #7a5cff;
   margin-top: 50px;
+}
+
+label {
+  display: inline-block;
+  margin: 10px 5px;
+  font-weight: bold;
+}
+
+select {
+  padding: 6px 10px;
+  border: 1px solid #c4b5fd;
+  border-radius: 8px;
+  background-color: white;
+  margin: 5px;
+}
+
+hr {
+  margin: 30px auto;
+  max-width: 800px;
+  border: none;
+  border-top: 1px solid #d8ccff;
 }
 
 ul {
@@ -22,12 +45,41 @@ li {
 a {
   text-decoration: none;
   color: white;
-  background-color: #a78bfa; /* 紫ボタン */
+  background-color: #a78bfa;
   padding: 10px 20px;
   border-radius: 10px;
   display: inline-block;
 }
 
 a:hover {
-  background-color: #7a5cff; /* ホバーで濃く */
+  background-color: #7a5cff;
+}
+
+.combo-card {
+  background-color: white;
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+  text-align: left;
+}
+
+.combo-card h2 {
+  color: #6d4cff;
+  font-size: 20px;
+  line-height: 1.5;
+  margin-top: 0;
+}
+
+.combo-card p {
+  line-height: 1.7;
+  margin: 10px 0;
+}
+
+.note {
+  background-color: #f3f0ff;
+  padding: 12px;
+  border-radius: 10px;
+  margin-top: 15px;
 }
