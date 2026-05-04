@@ -1,6 +1,5 @@
 body {
-  /* ニコ感：ピンク × 水色グラデ */
-  background: linear-gradient(135deg, #ffd6ec, #cde7ff);
+  background-color: #f5f0ff;
   font-family: "Hiragino Kaku Gothic ProN", sans-serif;
   color: #333;
   text-align: center;
@@ -9,73 +8,70 @@ body {
 }
 
 h1 {
-  color: #444;
+  color: #7a5cff;
   margin-top: 50px;
-  text-shadow: 0 2px 10px rgba(255, 182, 220, 0.4);
 }
 
-/* ラベル */
 label {
   display: inline-block;
   margin: 10px 5px;
   font-weight: bold;
-  color: #555;
 }
 
-/* セレクト */
 select {
   padding: 6px 10px;
-  border: 1px solid #ddd;
+  border: 1px solid #c4b5fd;
   border-radius: 8px;
   background-color: white;
   margin: 5px;
 }
 
-/* 区切り線 */
 hr {
   margin: 30px auto;
   max-width: 800px;
   border: none;
-  border-top: 1px solid #ddd;
+  border-top: 1px solid #d8ccff;
 }
 
-/* ボタン（ニコ感） */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  margin: 20px 0;
+}
+
 a {
   text-decoration: none;
   color: white;
-  background: linear-gradient(135deg, #ff9acb, #6ecbff);
+  background-color: #a78bfa;
   padding: 10px 20px;
   border-radius: 10px;
   display: inline-block;
-  transition: 0.2s;
 }
 
 a:hover {
-  background: linear-gradient(135deg, #ff6fb3, #4db8ff);
-  transform: translateY(-2px);
+  background-color: #7a5cff;
 }
 
-/* カード（おにぎりゃー感ベース） */
-.combo-card {
-  /* 縞々：白＋グレー */
-  background: repeating-linear-gradient(
-    45deg,
-    #ffffff,
-    #ffffff 10px,
-    #f3f3f3 10px,
-    #f3f3f3 20px
-  );
+#result {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
 
+.combo-card {
+  background-color: white;
   max-width: 800px;
   margin: 24px auto;
   padding: 24px;
-  border-radius: 16px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  border-radius: 14px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
   text-align: left;
   box-sizing: border-box;
 }
 
-/* コンボタイトル */
 .combo-card h2 {
   color: #333;
   font-size: 20px;
@@ -83,25 +79,42 @@ a:hover {
   word-break: break-word;
 }
 
-/* テキスト */
 .combo-card p {
   line-height: 1.7;
   margin: 10px 0;
 }
 
-/* NOTE（おにぎり＋ニコ混合） */
 .note {
-  background: linear-gradient(135deg, #ffffff, #f0f0f0);
+  background-color: #f3f0ff;
   padding: 14px;
-  border-radius: 12px;
+  border-radius: 10px;
   line-height: 1.8;
-  border-left: 6px solid;
-  border-image: linear-gradient(#ff9acb, #6ecbff) 1;
 }
 
-/* 全体幅制御 */
-#result {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 0 20px;
+/* ここからトップページ専用 */
+body.home {
+  background:
+    repeating-linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.65) 0px,
+      rgba(255, 255, 255, 0.65) 14px,
+      rgba(230, 230, 230, 0.45) 14px,
+      rgba(230, 230, 230, 0.45) 28px
+    ),
+    linear-gradient(135deg, #ffd6ec, #cde7ff);
+  min-height: 100vh;
+}
+
+body.home h1 {
+  color: #444;
+  text-shadow: 0 2px 8px rgba(255, 154, 203, 0.5);
+}
+
+body.home a {
+  background: linear-gradient(135deg, #ff9acb, #6ecbff);
+  min-width: 230px;
+}
+
+body.home a:hover {
+  background: linear-gradient(135deg, #ff6fb3, #4db8ff);
 }
