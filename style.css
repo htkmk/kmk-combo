@@ -246,3 +246,53 @@ body.home .ingrid-button:hover {
   );
   transform: translateY(-3px) scale(1.05);
 }
+
+/* クラシックJPページ専用 */
+body.jp-page {
+  background: linear-gradient(
+    45deg,
+    #6f2cff 0%,
+    #efe3ff 45%,
+    #ffffff 100%
+  );
+  min-height: 100vh;
+}
+
+body.jp-page h1 {
+  color: #c15cff;
+  text-shadow:
+    -5px -5px 0 white,
+     5px -5px 0 white,
+    -5px  5px 0 white,
+     5px  5px 0 white;
+}
+
+body.jp-page ul {
+  margin-top: 40px;
+}
+
+body.jp-page a {
+  background: linear-gradient(
+    45deg,
+    #6f2cff,
+    #ffffff
+  );
+  color: #c15cff;
+  min-width: 230px;
+  text-shadow:
+    -5px -5px 0 white,
+     5px -5px 0 white,
+    -5px  5px 0 white,
+     5px  5px 0 white;
+  box-shadow: 0 8px 18px rgba(111, 44, 255, 0.25);
+  transition: 0.2s;
+}
+
+body.jp-page a:hover {
+  background: linear-gradient(
+    135deg,
+    #9a68ff,
+    #ffffff
+  );
+  transform: translateY(-2px);
+}
