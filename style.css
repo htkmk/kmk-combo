@@ -210,10 +210,10 @@ body.home .jp-button {
   color: #c15cff;
   font-size: 1.15rem;
   text-shadow:
-  -1px -1px 0 white,
-   1px -1px 0 white,
-  -1px  1px 0 white,
-   1px  1px 0 white;
+  -5px -5px 0 white,
+   5px -5px 0 white,
+  -5px  5px 0 white,
+   5px  5px 0 white;
 }
 
 body.home .jp-button:hover {
