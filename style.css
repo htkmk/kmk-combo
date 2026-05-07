@@ -240,5 +240,5 @@ body.home .ingrid-button:hover {
     #b48fff,
     #eeeeee
   );
-  transform: translateY(-2px);
+  transform: translateY(-3px) scale(1.05);
 }
