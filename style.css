@@ -198,6 +198,7 @@ body.home a {
 
 /* JPボタン：濃い紫 × 白 */
 body.home .jp-button {
+    color: #4b1d95;
   background: linear-gradient(
     135deg,
     #4b1d95,
@@ -216,6 +217,7 @@ body.home .jp-button:hover {
 
 /* イングリッドボタン：薄い紫 × 白 */
 body.home .ingrid-button {
+    color: #d8c3a5;
   background: linear-gradient(
     135deg,
     #caa8ff,
