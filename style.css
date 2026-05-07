@@ -200,7 +200,7 @@ body.home a {
 body.home .jp-button {
     color: #4b1d95;
   background: linear-gradient(
-    135deg,
+    45deg,
     #4b1d95,
     #ffffff
   );
@@ -208,7 +208,7 @@ body.home .jp-button {
 
 body.home .jp-button:hover {
   background: linear-gradient(
-    135deg,
+    45deg,
     #2f0f63,
     #dddddd
   );
@@ -217,9 +217,9 @@ body.home .jp-button:hover {
 
 /* イングリッドボタン：薄い紫 × 白 */
 body.home .ingrid-button {
-    color: #d8c3a5;
+    color: #c7a97a;
   background: linear-gradient(
-    135deg,
+    45deg,
     #caa8ff,
     #ffffff
   );
@@ -227,7 +227,7 @@ body.home .ingrid-button {
 
 body.home .ingrid-button:hover {
   background: linear-gradient(
-    135deg,
+    45deg,
     #b48fff,
     #eeeeee
   );
