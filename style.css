@@ -116,17 +116,15 @@ body.home::before {
   width: 50vw;
   height: 100vh;
 
-  background:
-    linear-gradient(
-      to bottom,
-      #2c4a9a 0%,
-      #9fffe0 50%,
-      #fff176 100%
-    );
+  background: linear-gradient(
+    to bottom,
+    #2c4a9a 0%,
+    #9fffe0 50%,
+    #fff176 100%
+  );
 
   opacity: 0.75;
 
-  /* 左は濃く、中央へ向かって透明 */
   mask-image: linear-gradient(
     to right,
     black 0%,
@@ -144,6 +142,7 @@ body.home::before {
   z-index: 0;
 }
 
+/* 右端のグラデーション */
 body.home::after {
   content: "";
   position: fixed;
@@ -152,17 +151,15 @@ body.home::after {
   width: 50vw;
   height: 100vh;
 
-  background:
-    linear-gradient(
-      to bottom,
-      #ff9acb 0%,
-      #8fdcff 50%,
-      #8b0000 100%
-    );
+  background: linear-gradient(
+    to bottom,
+    #ff9acb 0%,
+    #8fdcff 50%,
+    #8b0000 100%
+  );
 
   opacity: 0.75;
 
-  /* 右は濃く、中央へ向かって透明 */
   mask-image: linear-gradient(
     to left,
     black 0%,
@@ -193,11 +190,44 @@ body.home h1 {
   text-shadow: 0 2px 8px rgba(255, 154, 203, 0.5);
 }
 
+/* トップページのボタン共通 */
 body.home a {
-  background: linear-gradient(135deg, #ff9acb, #6ecbff);
   min-width: 230px;
+  transition: 0.2s;
 }
 
-body.home a:hover {
-  background: linear-gradient(135deg, #ff6fb3, #4db8ff);
+/* JPボタン：濃い紫 × 白 */
+body.home .jp-button {
+  background: linear-gradient(
+    135deg,
+    #4b1d95,
+    #ffffff
+  );
+}
+
+body.home .jp-button:hover {
+  background: linear-gradient(
+    135deg,
+    #2f0f63,
+    #dddddd
+  );
+  transform: translateY(-2px);
+}
+
+/* イングリッドボタン：薄い紫 × 白 */
+body.home .ingrid-button {
+  background: linear-gradient(
+    135deg,
+    #caa8ff,
+    #ffffff
+  );
+}
+
+body.home .ingrid-button:hover {
+  background: linear-gradient(
+    135deg,
+    #b48fff,
+    #eeeeee
+  );
+  transform: translateY(-2px);
 }
