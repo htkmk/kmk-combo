@@ -210,10 +210,10 @@ body.home .jp-button {
   color: #c15cff;
   font-size: 1.15rem;
   text-shadow:
-  -5px -5px 0 white,
-   5px -5px 0 white,
-  -5px  5px 0 white,
-   5px  5px 0 white;
+  -2px -2px 0 white,
+   2px -2px 0 white,
+  -2px  2px 0 white,
+   2px  2px 0 white;
 }
 
 body.home .jp-button:hover {
@@ -261,10 +261,10 @@ body.jp-page {
 body.jp-page h1 {
   color: #c15cff;
   text-shadow:
-    -5px -5px 0 white,
-     5px -5px 0 white,
-    -5px  5px 0 white,
-     5px  5px 0 white;
+    -2px -2px 0 white,
+     2px -2px 0 white,
+    -2px  2px 0 white,
+     2px  2px 0 white;
 }
 
 body.jp-page ul {
@@ -280,10 +280,10 @@ body.jp-page a {
   color: #c15cff;
   min-width: 230px;
   text-shadow:
-    -5px -5px 0 white,
-     5px -5px 0 white,
-    -5px  5px 0 white,
-     5px  5px 0 white;
+    -2px -2px 0 white,
+     2px -2px 0 white,
+    -2px  2px 0 white,
+     2px  2px 0 white;
   box-shadow: 0 8px 18px rgba(111, 44, 255, 0.25);
   transition: 0.2s;
 }
