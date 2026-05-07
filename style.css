@@ -201,31 +201,37 @@ body.home a {
 
 /* JPボタン：濃い紫 × 白 */
 body.home .jp-button {
-    color: #d05cff;
   background: linear-gradient(
     45deg,
-    #4b1d95,
+    #7b2cff,
     #ffffff
   );
+
+  color: #ff6bff;
+  font-size: 1.15rem;
+  text-shadow: 0 0 10px rgba(255, 107, 255, 0.6);
 }
 
 body.home .jp-button:hover {
   background: linear-gradient(
     45deg,
-    #6d2ed1,
-    #dddddd
+    #b06cff,
+    #ffffff
   );
-  transform: translateY(-2px);
+
+  transform: translateY(-3px) scale(1.05);
 }
 
 /* イングリッドボタン：薄い紫 × 白 */
 body.home .ingrid-button {
-    color: #c3ab86;
   background: linear-gradient(
     45deg,
-    #caa8ff,
+    #d8c0ff,
     #ffffff
   );
+
+  color: #b8905f;
+  font-size: 1.15rem;
 }
 
 body.home .ingrid-button:hover {
