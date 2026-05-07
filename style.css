@@ -117,10 +117,13 @@ body.home::before {
   height: 100vh;
 
   background: linear-gradient(
-    to bottom,
-    #2c4a9a 0%,
-    #9fffe0 50%,
-    #fff176 100%
+  to bottom,
+  #ffffff 0%,
+  #ffffff 20%,
+
+  #2c4a9a 55%,
+
+  #9fffe0 100%
   );
 
   opacity: 0.75;
