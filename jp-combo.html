@@ -183,7 +183,7 @@
                (position === "" || c.position.includes(position)) &&
                (purpose === "" || c.purpose.includes(purpose)) &&
                (drive === "" || Number(drive) >= c.drive) &&
-               (sa === "" || Number(sa) === Number(c.sa))
+               (sa === "" || Number(sa) >= Number(c.sa))
       });
 
       const result = document.getElementById("result");
