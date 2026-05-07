@@ -96,9 +96,9 @@ body.home {
   background: repeating-linear-gradient(
     0deg,
     rgba(255, 255, 255, 0.8) 0px,
-    rgba(255, 255, 255, 0.8) 20px,
-    rgba(200, 200, 200, 0.6) 20px,
-    rgba(200, 200, 200, 0.6) 40px
+    rgba(255, 255, 255, 0.8) 40px,
+    rgba(200, 200, 200, 0.6) 40px,
+    rgba(200, 200, 200, 0.6) 80px
   ),
   linear-gradient(135deg, #ffd6ec, #cde7ff);
 }
