@@ -209,7 +209,11 @@ body.home .jp-button {
 
   color: #c15cff;
   font-size: 1.15rem;
-  text-shadow: 0 0 10px rgba(255, 107, 255, 0.6);
+  text-shadow:
+  -1px -1px 0 white,
+   1px -1px 0 white,
+  -1px  1px 0 white,
+   1px  1px 0 white;
 }
 
 body.home .jp-button:hover {
