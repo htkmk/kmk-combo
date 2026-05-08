@@ -299,10 +299,10 @@ body.jp-page a:hover {
 /* クラシックイングリッドページ専用 */
 body.ingrid-page {
   background: linear-gradient(
-    135deg,
+    45deg,
     #d8c0ff 0%,
-    #f3ebff 45%,
-    #ffffff 100%
+    #efe6ff 35%,
+    #ffffff 70%
   );
 
   min-height: 100vh;
@@ -316,10 +316,12 @@ body.ingrid-page h1 {
      2px -2px 0 white,
     -2px  2px 0 white,
      2px  2px 0 white;
+
+  font-size: 2.5rem;
 }
 
 body.ingrid-page ul {
-  margin-top: 40px;
+  margin-top: 50px;
 }
 
 body.ingrid-page a {
@@ -331,10 +333,14 @@ body.ingrid-page a {
 
   color: #c3ab86;
 
-  min-width: 230px;
+  min-width: 260px;
+
+  font-size: 1.15rem;
+
+  border-radius: 14px;
 
   box-shadow:
-    0 8px 18px rgba(216, 192, 255, 0.25);
+    0 10px 24px rgba(216, 192, 255, 0.3);
 
   transition: 0.2s;
 }
@@ -342,9 +348,9 @@ body.ingrid-page a {
 body.ingrid-page a:hover {
   background: linear-gradient(
     45deg,
-    #ead8ff,
+    #f1e7ff,
     #ffffff
   );
 
-  transform: translateY(-2px) scale(1.03);
+  transform: translateY(-3px) scale(1.05);
 }
