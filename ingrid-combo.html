@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>クラシックイングリッド</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <h1>クラシックイングリッド コンボ</h1>
+
+  <label>位置：</label>
+  <select id="position">
+    <option value="">すべて</option>
+    <option value="端背負い">端背負い</option>
+    <option value="端背負い付近">端背負い付近</option>
+    <option value="中央">中央</option>
+    <option value="端背負わせ付近">端背負わせ付近</option>
+    <option value="端背負わせ">端背負わせ</option>
+  </select>
+
+  <label>使用用途：</label>
+  <select id="purpose">
+    <option value="">すべて</option>
+    <option value="ダメージ重視">ダメージ重視</option>
+    <option value="状況重視">状況重視</option>
+    <option value="運び重視">運び重視</option>
+  </select>
+
+  <label>所持ドライブゲージ：</label>
+  <select id="drive">
+    <option value="">すべて</option>
+    <option value="0">０本</option>
+    <option value="1">１本</option>
+    <option value="2">２本</option>
+    <option value="3">３本</option>
+    <option value="4">４本</option>
+    <option value="5">５本</option>
+    <option value="6">６本</option>
+  </select>
+
+  <label>所持SAゲージ：</label>
+  <select id="sa">
+    <option value="">すべて</option>
+    <option value="0">０ゲージ</option>
+    <option value="1">１ゲージ</option>
+    <option value="2">２ゲージ</option>
+    <option value="3">３ゲージ</option>
+  </select>
+
+  <label>始動技：</label>
+  <select id="starter">
+    <option value="">すべて</option>
+    <option value="インパクトパニカン">インパクトパニカン</option>
+    <option value="スタン">スタン</option>
+  </select>
+
+  <hr>
+
+  <div id="result"></div>
+
+  <p><a href="classic-ingrid.html">← クラシックイングリッドページに戻る</a></p>
+  <p><a href="index.html">← トップに戻る</a></p>
+
+  <script>
+    const combos = [
+      <!-- 端背負いのみ -->
+      
+      <!-- 端背負いと端背負い付近 -->
+      
+      <!-- 端背負いと端背負い付近と中央 -->
+      
+      <!-- 端背負い付近と中央 -->
+      
+      <!-- 中央 -->
+      
+      <!-- 端背負わせ付近 -->
+      
+      <!-- 端背負わせ -->
+      
+    ];
+
+    function renderCombos() {
+      const starter = document.getElementById("starter").value;
+      const position = document.getElementById("position").value;
+      const purpose = document.getElementById("purpose").value;
+      const drive = document.getElementById("drive").value;
+      const sa = document.getElementById("sa").value;
+
+      const filtered = combos.filter(c => {
+        return (starter === "" || c.starter.includes(starter)) &&
+               (position === "" || c.position.includes(position)) &&
+               (purpose === "" || c.purpose.includes(purpose)) &&
+               (drive === "" || Number(drive) >= c.drive) &&
+               (sa === "" || Number(sa) >= Number(c.sa))
+      });
+
+      const result = document.getElementById("result");
+
+      if (filtered.length === 0) {
+        result.innerHTML = "<p>該当なし</p>";
+        return;
+      }
+
+      result.innerHTML = filtered.map(c => `
+        <div class="combo-card">
+          <h2>${c.combo}</h2>
+          <p>位置: ${c.position.join(" / ")}</p>
+          <p>使用用途: ${c.purpose.join(" / ")}</p>
+          <p>必要ドライブゲージ: ${c.drive}</p>
+          <p>必要SAゲージ: ${c.sa}</p>
+          <p>始動技: ${c.starter.join(" / ")}</p>
+          <p class="note">${c.note}</p>
+        </div>
+      `).join("");
+    }
+
+    document.getElementById("position").addEventListener("change", renderCombos);
+    document.getElementById("purpose").addEventListener("change", renderCombos);
+    document.getElementById("drive").addEventListener("change", renderCombos);
+    document.getElementById("sa").addEventListener("change", renderCombos);
+    document.getElementById("starter").addEventListener("change", renderCombos);
+
+    renderCombos();
+  </script>
+
+</body>
+</html>
