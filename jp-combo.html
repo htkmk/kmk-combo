@@ -121,10 +121,12 @@
     }
 
     function canUseRoute(route, conditions) {
-      return conditions.hitState !== "" &&
+      return conditions.hitType !== "" &&
+             conditions.hitState !== "" &&
              conditions.drive !== "" &&
              conditions.sa !== "" &&
              conditions.position !== "" &&
+             route.hitType.includes(conditions.hitType) &&
              route.hitState.includes(conditions.hitState) &&
              route.position.includes(conditions.position) &&
              Number(conditions.drive) >= Number(route.drive) &&
@@ -216,6 +218,7 @@
       }
     }
 
+    document.getElementById("hitType").addEventListener("change", startRoute);
     document.getElementById("starter").addEventListener("change", startRoute);
     document.getElementById("hitState").addEventListener("change", startRoute);
     document.getElementById("drive").addEventListener("change", startRoute);
