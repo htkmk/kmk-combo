@@ -58,8 +58,6 @@
     <select id="starter">
       <option value="">選択してください</option>
       <option value="インパクト">インパクト</option>
-      <option value="5大P">5大P</option>
-      <option value="2中K">2中K</option>
     </select>
   </div>
 
@@ -74,72 +72,32 @@
   <p><a href="index.html">← トップに戻る</a></p>
 
   <script>
-    // 技同士のつながりデータ
+    const impactPanishMoves = [
+      "立ち小P", "立ち中P", "立ち大P",
+      "立ち小K", "立ち中K", "立ち大K",
+      "しゃがみ小P", "しゃがみ中P", "しゃがみ大P",
+      "しゃがみ小K", "しゃがみ中K", "しゃがみ大K",
+      "ジャンプ小P", "ジャンプ中P", "ジャンプ大P",
+      "ジャンプ小K", "ジャンプ中K", "ジャンプ大K"
+    ];
+
+    const allPositions = [
+      "端背負い",
+      "端背負い付近",
+      "中央",
+      "端背負わせ付近",
+      "端背負わせ"
+    ];
+
     const routes = [
-      {
+      ...impactPanishMoves.map(move => ({
         from: "インパクト",
-        to: "歩き5大P",
+        to: move,
         hitState: ["パニカン"],
-        position: ["端背負い", "端背負い付近", "中央"],
+        position: allPositions,
         drive: 0,
         sa: 0
-      },
-      {
-        from: "歩き5大P",
-        to: "強ストリボーグ",
-        hitState: ["パニカン"],
-        position: ["端背負い", "端背負い付近", "中央"],
-        drive: 0,
-        sa: 0
-      },
-      {
-        from: "強ストリボーグ",
-        to: "中トルバラン",
-        hitState: ["パニカン"],
-        position: ["端背負い", "端背負い付近", "中央"],
-        drive: 0,
-        sa: 0
-      },
-      {
-        from: "中トルバラン",
-        to: "強トリグラフ",
-        hitState: ["パニカン"],
-        position: ["端背負い", "端背負い付近", "中央"],
-        drive: 0,
-        sa: 0
-      },
-      {
-        from: "中トルバラン",
-        to: "強ヴィーハト",
-        hitState: ["パニカン"],
-        position: ["端背負い", "端背負い付近", "中央"],
-        drive: 0,
-        sa: 0
-      },
-      {
-        from: "強ストリボーグ",
-        to: "前ステップ",
-        hitState: ["パニカン"],
-        position: ["端背負い", "端背負い付近", "中央"],
-        drive: 1,
-        sa: 0
-      },
-      {
-        from: "前ステップ",
-        to: "ラッシュ6大K",
-        hitState: ["パニカン"],
-        position: ["端背負い", "端背負い付近", "中央"],
-        drive: 1,
-        sa: 0
-      },
-      {
-        from: "ラッシュ6大K",
-        to: "強トリグラフ",
-        hitState: ["パニカン"],
-        position: ["端背負い", "端背負い付近", "中央"],
-        drive: 1,
-        sa: 0
-      }
+      }))
     ];
 
     let currentRoute = [];
@@ -220,7 +178,6 @@
         currentRoute.push(this.value);
         updateRouteText();
 
-        // この選択ボックスより後ろを消す
         let next = box.nextSibling;
         while (next) {
           const removeTarget = next;
@@ -248,7 +205,6 @@
     }
 
     document.getElementById("starter").addEventListener("change", startRoute);
-
     document.getElementById("hitState").addEventListener("change", startRoute);
     document.getElementById("drive").addEventListener("change", startRoute);
     document.getElementById("sa").addEventListener("change", startRoute);
