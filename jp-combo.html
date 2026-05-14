@@ -54,15 +54,15 @@
   </div>
 
   <div class="combo-card">
-  <h2>コンボルート</h2>
+    <h2>コンボルート</h2>
 
-  <div id="routeArea" class="route-area">
-    <select id="starter">
-      <option value="">始動技を選択</option>
-      <option value="インパクト">インパクト</option>
-    </select>
+    <div id="routeArea" class="route-area">
+      <select id="starter">
+        <option value="">始動技を選択</option>
+        <option value="インパクト">インパクト</option>
+      </select>
+    </div>
   </div>
-</div>
 
   <div class="combo-card">
     <h2>現在のルート</h2>
@@ -125,7 +125,13 @@
 
     function resetRoute() {
       currentRoute = [];
-      document.getElementById("routeArea").innerHTML = "";
+
+      const routeArea = document.getElementById("routeArea");
+
+      while (routeArea.children.length > 1) {
+        routeArea.removeChild(routeArea.lastChild);
+      }
+
       updateRouteText();
     }
 
@@ -143,52 +149,55 @@
       createNextSelect(starter);
     }
 
-  function createNextSelect(currentMove) {
-  const conditions = getConditions();
+    function createNextSelect(currentMove) {
+      const conditions = getConditions();
 
-  const candidates = routes.filter(route => {
-    return route.from === currentMove && canUseRoute(route, conditions);
-  });
+      const candidates = routes.filter(route => {
+        return route.from === currentMove && canUseRoute(route, conditions);
+      });
 
-  if (candidates.length === 0) {
-    return;
-  }
+      if (candidates.length === 0) {
+        return;
+      }
 
-  const arrow = document.createElement("span");
-  arrow.className = "route-arrow";
-  arrow.textContent = "＞";
+      const arrow = document.createElement("span");
+      arrow.className = "route-arrow";
+      arrow.textContent = "＞";
 
-  const select = document.createElement("select");
-  select.innerHTML = `<option value="">次の技を選択</option>`;
+      const select = document.createElement("select");
+      select.innerHTML = `<option value="">次の技を選択</option>`;
 
-  candidates.forEach(route => {
-    const option = document.createElement("option");
-    option.value = route.to;
-    option.textContent = route.to;
-    select.appendChild(option);
-  });
+      candidates.forEach(route => {
+        const option = document.createElement("option");
+        option.value = route.to;
+        option.textContent = route.to;
+        select.appendChild(option);
+      });
 
-  select.addEventListener("change", function() {
-    if (this.value === "") return;
+      select.addEventListener("change", function() {
+        if (this.value === "") return;
 
-    currentRoute.push(this.value);
-    updateRouteText();
+        let selectIndex = Array.from(document.querySelectorAll("#routeArea select")).indexOf(select);
 
-    let next = select.nextSibling;
-    while (next) {
-      const removeTarget = next;
-      next = next.nextSibling;
-      removeTarget.remove();
+        currentRoute = currentRoute.slice(0, selectIndex + 1);
+        currentRoute.push(this.value);
+        updateRouteText();
+
+        let next = select.nextSibling;
+        while (next) {
+          const removeTarget = next;
+          next = next.nextSibling;
+          removeTarget.remove();
+        }
+
+        createNextSelect(this.value);
+      });
+
+      const routeArea = document.getElementById("routeArea");
+      routeArea.appendChild(arrow);
+      routeArea.appendChild(select);
     }
 
-    createNextSelect(this.value);
-  });
-
-  const routeArea = document.getElementById("routeArea");
-  routeArea.appendChild(arrow);
-  routeArea.appendChild(select);
-}
-    
     function updateRouteText() {
       const routeText = document.getElementById("currentRoute");
 
