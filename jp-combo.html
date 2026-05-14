@@ -150,49 +150,49 @@
       });
 
       if (candidates.length === 0) {
-        const endMessage = document.createElement("p");
-        endMessage.textContent = "これ以上つながる技がありません。";
-        document.getElementById("routeArea").appendChild(endMessage);
         return;
       }
+  
+      const wrapper = document.createElement("div");
+        wrapper.className = "route-select";
 
-      const box = document.createElement("div");
-      box.className = "combo-card";
+      const arrow = document.createElement("span");
+        arrow.className = "route-arrow";
+        arrow.textContent = "＞";
 
-      const label = document.createElement("h2");
-      label.textContent = `「${currentMove}」の次に出す技`;
+  const select = document.createElement("select");
 
-      const select = document.createElement("select");
-      select.innerHTML = `<option value="">選択してください</option>`;
+  select.innerHTML = `<option value="">選択してください</option>`;
 
-      candidates.forEach(route => {
-        const option = document.createElement("option");
-        option.value = route.to;
-        option.textContent = route.to;
-        select.appendChild(option);
-      });
+  candidates.forEach(route => {
+    const option = document.createElement("option");
+    option.value = route.to;
+    option.textContent = route.to;
+    select.appendChild(option);
+  });
 
-      select.addEventListener("change", function() {
-        if (this.value === "") return;
+  select.addEventListener("change", function() {
+    if (this.value === "") return;
 
-        currentRoute.push(this.value);
-        updateRouteText();
+    currentRoute.push(this.value);
+    updateRouteText();
 
-        let next = box.nextSibling;
-        while (next) {
-          const removeTarget = next;
-          next = next.nextSibling;
-          removeTarget.remove();
-        }
+    let next = wrapper.nextSibling;
 
-        createNextSelect(this.value);
-      });
-
-      box.appendChild(label);
-      box.appendChild(select);
-
-      document.getElementById("routeArea").appendChild(box);
+    while (next) {
+      const removeTarget = next;
+      next = next.nextSibling;
+      removeTarget.remove();
     }
+
+    createNextSelect(this.value);
+  });
+
+  wrapper.appendChild(arrow);
+  wrapper.appendChild(select);
+
+  document.getElementById("routeArea").appendChild(wrapper);
+}
 
     function updateRouteText() {
       const routeText = document.getElementById("currentRoute");
