@@ -143,27 +143,23 @@
       createNextSelect(starter);
     }
 
-    function createNextSelect(currentMove) {
-      const conditions = getConditions();
+  function createNextSelect(currentMove) {
+  const conditions = getConditions();
 
-      const candidates = routes.filter(route => {
-        return route.from === currentMove && canUseRoute(route, conditions);
-      });
+  const candidates = routes.filter(route => {
+    return route.from === currentMove && canUseRoute(route, conditions);
+  });
 
-      if (candidates.length === 0) {
-        return;
-      }
-  
-      const wrapper = document.createElement("div");
-        wrapper.className = "route-select";
+  if (candidates.length === 0) {
+    return;
+  }
 
-      const arrow = document.createElement("span");
-        arrow.className = "route-arrow";
-        arrow.textContent = "＞";
+  const arrow = document.createElement("span");
+  arrow.className = "route-arrow";
+  arrow.textContent = "＞";
 
   const select = document.createElement("select");
-
-  select.innerHTML = `<option value="">選択してください</option>`;
+  select.innerHTML = `<option value="">次の技を選択</option>`;
 
   candidates.forEach(route => {
     const option = document.createElement("option");
@@ -178,8 +174,7 @@
     currentRoute.push(this.value);
     updateRouteText();
 
-    let next = wrapper.nextSibling;
-
+    let next = select.nextSibling;
     while (next) {
       const removeTarget = next;
       next = next.nextSibling;
@@ -189,12 +184,11 @@
     createNextSelect(this.value);
   });
 
-  wrapper.appendChild(arrow);
-  wrapper.appendChild(select);
-
-  document.getElementById("routeArea").appendChild(wrapper);
+  const routeArea = document.getElementById("routeArea");
+  routeArea.appendChild(arrow);
+  routeArea.appendChild(select);
 }
-
+    
     function updateRouteText() {
       const routeText = document.getElementById("currentRoute");
 
