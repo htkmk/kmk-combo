@@ -29,25 +29,10 @@
     </select>
 
     <label>所持ドライブゲージ：</label>
-    <select id="drive">
-      <option value="">選択してください</option>
-      <option value="0">０本</option>
-      <option value="1">１本</option>
-      <option value="2">２本</option>
-      <option value="3">３本</option>
-      <option value="4">４本</option>
-      <option value="5">５本</option>
-      <option value="6">６本</option>
-    </select>
+    <select id="drive"></select>
 
     <label>所持SAゲージ：</label>
-    <select id="sa">
-      <option value="">選択してください</option>
-      <option value="0">０ゲージ</option>
-      <option value="1">１ゲージ</option>
-      <option value="2">２ゲージ</option>
-      <option value="3">３ゲージ</option>
-    </select>
+    <select id="sa"></select>
 
     <label>画面端からの距離：</label>
     <select id="position">
@@ -80,6 +65,36 @@
   <p><a href="index.html">← トップに戻る</a></p>
 
   <script>
+    // ドライブゲージ生成
+    const driveSelect = document.getElementById("drive");
+
+    for (let i = 0; i <= 6; i += 0.5) {
+      const option = document.createElement("option");
+
+      option.value = i.toFixed(1);
+      option.textContent = i.toFixed(1);
+
+      driveSelect.appendChild(option);
+    }
+
+    // SAゲージ生成
+    const saSelect = document.getElementById("sa");
+
+    for (let i = 0; i <= 3; i += 0.1) {
+      const option = document.createElement("option");
+
+      option.value = i.toFixed(1);
+      option.textContent = i.toFixed(1);
+
+      saSelect.appendChild(option);
+    }
+
+    driveSelect.innerHTML =
+      `<option value="">選択してください</option>`;
+
+    saSelect.innerHTML =
+      `<option value="">選択してください</option>`;
+    
     const impactPanishMoves = [
       "立ち小P", "立ち中P", "立ち大P",
       "立ち小K", "立ち中K", "立ち大K",
