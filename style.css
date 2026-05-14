@@ -205,18 +205,10 @@ body.home a {
   align-items: center;
   flex-wrap: wrap;
   gap: 10px;
-  margin: 30px auto;
-  justify-content: center;
-}
-
-.route-select {
-  display: flex;
-  align-items: center;
-  gap: 10px;
 }
 
 .route-arrow {
-  font-size: 28px;
+  font-size: 24px;
   font-weight: bold;
   color: #7a5cff;
 }
