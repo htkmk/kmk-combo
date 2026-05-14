@@ -68,6 +68,9 @@
     // ドライブゲージ生成
     const driveSelect = document.getElementById("drive");
 
+    driveSelect.innerHTML =
+      `<option value="">選択してください</option>`;
+
     for (let i = 0; i <= 6; i += 0.5) {
       const option = document.createElement("option");
 
@@ -80,6 +83,9 @@
     // SAゲージ生成
     const saSelect = document.getElementById("sa");
 
+    saSelect.innerHTML =
+      `<option value="">選択してください</option>`;
+
     for (let i = 0; i <= 3; i += 0.1) {
       const option = document.createElement("option");
 
@@ -88,12 +94,6 @@
 
       saSelect.appendChild(option);
     }
-
-    driveSelect.innerHTML =
-      `<option value="">選択してください</option>`;
-
-    saSelect.innerHTML =
-      `<option value="">選択してください</option>`;
     
     const impactPanishMoves = [
       "立ち小P", "立ち中P", "立ち大P",
