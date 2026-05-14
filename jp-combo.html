@@ -11,13 +11,14 @@
   <h1>クラシックJP コンボルート作成</h1>
 
   <div class="combo-card">
-    <h2>条件選択</h2> 
+    <h2>条件選択</h2>
+
     <label>ヒット位置：</label>
-      <select id="hitType">
-        <option value="">選択してください</option>
-        <option value="地上ヒット">地上ヒット</option>
-        <option value="空中ヒット">空中ヒット</option>
-      </select>
+    <select id="hitType">
+      <option value="">選択してください</option>
+      <option value="地上ヒット">地上ヒット</option>
+      <option value="空中ヒット">空中ヒット</option>
+    </select>
 
     <label>始動状態：</label>
     <select id="hitState">
@@ -98,26 +99,77 @@
 
     const routes = [
       ...impactPanishMoves.map(move => ({
-        from: "インパクト",
+        route: ["インパクト"],
         to: move,
         hitType: ["地上ヒット"],
         hitState: ["パニカン"],
         position: allPositions,
         drive: 0,
         sa: 0
-      }))
+      })),
+
+      {
+        route: ["インパクト", "ジャンプ大K"],
+        to: "6大K",
+        hitType: ["地上ヒット"],
+        hitState: ["パニカン"],
+        position: ["端背負わせ"],
+        drive: 0,
+        sa: 0
+      },
+      {
+        route: ["インパクト", "ジャンプ大K", "6大K"],
+        to: "中ストリボーグ",
+        hitType: ["地上ヒット"],
+        hitState: ["パニカン"],
+        position: ["端背負わせ"],
+        drive: 0,
+        sa: 0
+      },
+      {
+        route: ["インパクト", "ジャンプ大K", "6大K", "中ストリボーグ"],
+        to: "5大P",
+        hitType: ["地上ヒット"],
+        hitState: ["パニカン"],
+        position: ["端背負わせ"],
+        drive: 0,
+        sa: 0
+      },
+      {
+        route: ["インパクト", "ジャンプ大K", "6大K", "中ストリボーグ", "5大P"],
+        to: "弱トルバラン",
+        hitType: ["地上ヒット"],
+        hitState: ["パニカン"],
+        position: ["端背負わせ"],
+        drive: 0,
+        sa: 0
+      },
+      {
+        route: ["インパクト", "ジャンプ大K", "6大K", "中ストリボーグ", "5大P", "弱トルバラン"],
+        to: "SA3",
+        hitType: ["地上ヒット"],
+        hitState: ["パニカン"],
+        position: ["端背負わせ"],
+        drive: 0,
+        sa: 3
+      }
     ];
 
     let currentRoute = [];
 
     function getConditions() {
       return {
-         hitType: document.getElementById("hitType").value,
+        hitType: document.getElementById("hitType").value,
         hitState: document.getElementById("hitState").value,
         drive: document.getElementById("drive").value,
         sa: document.getElementById("sa").value,
         position: document.getElementById("position").value
       };
+    }
+
+    function isSameRoute(routeData, selectedRoute) {
+      return routeData.length === selectedRoute.length &&
+             routeData.every((move, index) => move === selectedRoute[index]);
     }
 
     function canUseRoute(route, conditions) {
@@ -156,14 +208,15 @@
 
       currentRoute.push(starter);
       updateRouteText();
-      createNextSelect(starter);
+      createNextSelect();
     }
 
-    function createNextSelect(currentMove) {
+    function createNextSelect() {
       const conditions = getConditions();
 
       const candidates = routes.filter(route => {
-        return route.from === currentMove && canUseRoute(route, conditions);
+        return isSameRoute(route.route, currentRoute) &&
+               canUseRoute(route, conditions);
       });
 
       if (candidates.length === 0) {
@@ -187,9 +240,10 @@
       select.addEventListener("change", function() {
         if (this.value === "") return;
 
-        let selectIndex = Array.from(document.querySelectorAll("#routeArea select")).indexOf(select);
+        const allSelects = Array.from(document.querySelectorAll("#routeArea select"));
+        const selectIndex = allSelects.indexOf(select);
 
-        currentRoute = currentRoute.slice(0, selectIndex + 1);
+        currentRoute = currentRoute.slice(0, selectIndex);
         currentRoute.push(this.value);
         updateRouteText();
 
@@ -200,7 +254,7 @@
           removeTarget.remove();
         }
 
-        createNextSelect(this.value);
+        createNextSelect();
       });
 
       const routeArea = document.getElementById("routeArea");
