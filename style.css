@@ -199,6 +199,28 @@ body.home a {
   transition: 0.2s;
 }
 
+/* 新体制 */
+.route-area {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 30px auto;
+  justify-content: center;
+}
+
+.route-select {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.route-arrow {
+  font-size: 28px;
+  font-weight: bold;
+  color: #7a5cff;
+}
+
 /* JPボタン：濃い紫 × 白 */
 body.home .jp-button {
   background: linear-gradient(
