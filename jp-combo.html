@@ -11,7 +11,13 @@
   <h1>クラシックJP コンボルート作成</h1>
 
   <div class="combo-card">
-    <h2>条件選択</h2>
+    <h2>条件選択</h2> 
+    <label>ヒット位置：</label>
+      <select id="hitType">
+        <option value="">選択してください</option>
+        <option value="地上ヒット">地上ヒット</option>
+        <option value="空中ヒット">空中ヒット</option>
+      </select>
 
     <label>始動状態：</label>
     <select id="hitState">
@@ -94,6 +100,7 @@
       ...impactPanishMoves.map(move => ({
         from: "インパクト",
         to: move,
+        hitType: ["地上ヒット"],
         hitState: ["パニカン"],
         position: allPositions,
         drive: 0,
@@ -105,6 +112,7 @@
 
     function getConditions() {
       return {
+         hitType: document.getElementById("hitType").value,
         hitState: document.getElementById("hitState").value,
         drive: document.getElementById("drive").value,
         sa: document.getElementById("sa").value,
