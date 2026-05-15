@@ -434,6 +434,27 @@
       }
     }
 
+    function updateDamage() {
+      let total = 0;
+
+      for (let i = 1; i < currentRoute.length; i++) {
+        const beforeRoute = currentRoute.slice(0, i);
+        const currentMove = currentRoute[i];
+
+        const routeData = routes.find(route => {
+          return isSameRoute(route.route, beforeRoute) &&
+          route.to === currentMove;
+        });
+
+        if (routeData && routeData.damage) {
+          total += routeData.damage;
+        }
+      }
+
+      document.getElementById("currentDamage").textContent =
+      `現在のダメージ：${total}`;
+  }
+
     document.getElementById("hitType").addEventListener("change", startRoute);
     document.getElementById("starter").addEventListener("change", startRoute);
     document.getElementById("hitState").addEventListener("change", startRoute);
