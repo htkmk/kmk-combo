@@ -125,7 +125,7 @@
       ...impactPanishMoves.map(move => ({
         route: ["インパクト"],
         to: move,
-        damage: 960,
+        damage: 800,
         hitType: ["地上ヒット"],
         hitState: ["パニカン"],
         position: allPositions,
@@ -458,6 +458,15 @@
         if (i === 0) {
           const starter = starterData[currentRoute[0]];
           damage = starter ? starter.damage : 0;
+
+          const hitState = document.getElementById("hitState").value;
+
+          if (
+            currentRoute[0] === "インパクト" &&
+            (hitState === "パニカン" || hitState === "カウンター")
+          ) {
+            damage = 960;
+          }
         } else {
           const beforeRoute = currentRoute.slice(0, i);
 
