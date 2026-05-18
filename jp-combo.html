@@ -449,7 +449,7 @@
 
     function updateDamage() {
       let total = 0;
-      let comboScaling = 0;
+      let comboScaling = 100;
 
       for (let i = 0; i < currentRoute.length; i++) {
         let damage = 0;
@@ -480,33 +480,33 @@
 
         let appliedScaling = comboScaling;
 
-        if (currentMove === "SA2" && appliedScaling > 60) {
-          appliedScaling = 60;
+        if (currentMove === "SA2" && appliedScaling < 40) {
+          appliedScaling = 40;
         }
 
-        if (currentMove === "SA1" && appliedScaling > 70) {
-          appliedScaling = 70;
+        if (currentMove === "SA1" && appliedScaling < 30) {
+          appliedScaling = 30;
         }
 
         const scaledDamage = Math.floor(
-          damage * (100 - appliedScaling) / 100
+          damage * appliedScaling / 100
         );
 
         total += scaledDamage;
 
         if (i === 0 && currentRoute[0] === "インパクト") {
-          comboScaling += 20;
+          comboScaling -= 20;
         }
 
         if (i >= 2) {
-          comboScaling += 10;
+          comboScaling -= 10;
         }
 
         if (currentMove === "SA2") {
-          comboScaling += 25;
+          comboScaling -= 25;
         }
 
-        comboScaling = Math.min(comboScaling, 90);
+        comboScaling = Math.max(comboScaling, 10);
       }
 
       document.getElementById("currentDamage").textContent =
