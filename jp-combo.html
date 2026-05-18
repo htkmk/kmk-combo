@@ -489,6 +489,9 @@
         if (i >= 2) {
           comboScaling += 10;
         }
+        if (currentMove === "SA1" && appliedScaling > 70) {
+          appliedScaling = 70;
+        }
         if (currentMove === "SA2") {
           comboScaling += 25;
         }
