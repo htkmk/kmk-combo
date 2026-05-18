@@ -448,93 +448,124 @@
     }
 
     function updateDamage() {
-  let total = 0;
-  let finalScaling = 100;
+      let total = 0;
+      let finalScaling = 100;
 
-  for (let i = 0; i < currentRoute.length; i++) {
-    let damage = 0;
-    const currentMove = currentRoute[i];
+      const specificSA2Route = [
+        "インパクト",
+        "ジャンプ大K",
+        "6大K",
+        "中ストリボーグ",
+        "5大P",
+        "SA2"
+      ];
 
-    if (i === 0) {
-      const starter = starterData[currentRoute[0]];
-      damage = starter ? starter.damage : 0;
+    for (let i = 0; i < currentRoute.length; i++) {
+      let damage = 0;
+      const currentMove = currentRoute[i];
 
-      const hitState = document.getElementById("hitState").value;
+      if (i === 0) {
+        const starter = starterData[currentRoute[0]];
+        damage = starter ? starter.damage : 0;
 
-      if (
-        currentRoute[0] === "インパクト" &&
-        (hitState === "パニカン" || hitState === "カウンター")
-      ) {
-        damage = 960;
+        const hitState = document.getElementById("hitState").value;
+
+        if (
+          currentRoute[0] === "インパクト" &&
+          (hitState === "パニカン" || hitState === "カウンター")
+        ) {
+          damage = 960;
+        }
+
+      } else {
+        const beforeRoute = currentRoute.slice(0, i);
+
+        const routeData = routes.find(route => {
+          return isSameRoute(route.route, beforeRoute) &&
+          route.to === currentMove;
+        });
+
+        damage = routeData ? routeData.damage : 0;
       }
 
-    } else {
-      const beforeRoute = currentRoute.slice(0, i);
+      let appliedScaling = 100;
 
-      const routeData = routes.find(route => {
-        return isSameRoute(route.route, beforeRoute) &&
-               route.to === currentMove;
-      });
+      if (currentRoute[0] === "インパクト" && i >= 1) {
+        appliedScaling -= 20;
+      }
 
-      damage = routeData ? routeData.damage : 0;
+      if (i >= 2) {
+        appliedScaling -= (i - 1) * 10;
+      }
+
+      appliedScaling = Math.max(appliedScaling, 10);
+
+      const routeUpToCurrent = currentRoute.slice(0, i + 1);
+      const routeBeforeCurrent = currentRoute.slice(0, i);
+
+      const isSpecificSA2Route =
+      specificSA2Route.every((move, index) => currentRoute[index] === move);
+
+      const isSA2Move =
+      currentMove === "SA2" &&
+      isSameRoute(routeUpToCurrent, specificSA2Route);
+
+      const isWeakStrAfterSpecificSA2 =
+      currentMove === "弱ストリボーグ" &&
+      isSameRoute(routeBeforeCurrent, specificSA2Route);
+
+      const sa2Index = specificSA2Route.length - 1;
+      const isAfterWeakStrInSpecificSA2Route =
+      isSpecificSA2Route &&
+      i > sa2Index + 1 &&
+      currentMove !== "SA1";
+
+      if (currentMove === "SA1" && appliedScaling < 30) {
+        appliedScaling = 30;
+      }
+
+      if (isSA2Move && appliedScaling < 40) {
+        appliedScaling = 40;
+      }
+
+      if (
+        (currentMove === "SA3" || currentMove === "CA") &&
+        appliedScaling < 50
+      ) {
+        appliedScaling = 50;
+      }
+
+      if (isWeakStrAfterSpecificSA2) {
+        appliedScaling = 40;
+      }
+
+      if (isAfterWeakStrInSpecificSA2Route) {
+        appliedScaling = 10;
+      }
+
+      const scaledDamage = Math.floor(
+        damage * appliedScaling / 100
+      );
+
+      total += scaledDamage;
+
+      finalScaling = appliedScaling;
     }
 
-    let appliedScaling = 100;
-
-    // インパクト始動補正：インパクト後の技から -20%
-    if (currentRoute[0] === "インパクト" && i >= 1) {
-      appliedScaling -= 20;
-    }
-
-    // 技数補正：3技目から -10%、4技目 -20%、5技目 -30%...
-    if (i >= 2) {
-      appliedScaling -= (i - 1) * 10;
-    }
-
-    // 最低10%
-    appliedScaling = Math.max(appliedScaling, 10);
-
-    // SA1最低保証：30%以上のダメージ
-    if (currentMove === "SA1" && appliedScaling < 30) {
-      appliedScaling = 30;
-    }
-    
-    // SA2最低保証：40%以上のダメージ
-    if (currentMove === "SA2" && appliedScaling < 40) {
-      appliedScaling = 40;
-    }
-
-    // SA3・CA最低保証：50%以上のダメージ
-    if (
-      (currentMove === "SA3" || currentMove === "CA") &&
-      appliedScaling < 50
-    ) {
-      appliedScaling = 50;
-    }
-
-    const scaledDamage = Math.floor(
-      damage * appliedScaling / 100
-    );
-
-    total += scaledDamage;
-
-    finalScaling = appliedScaling;
-  }
-
-  document.getElementById("currentDamage").textContent =
+    document.getElementById("currentDamage").textContent =
     `現在のダメージ：${total}`;
 
-  document.getElementById("currentScaling").textContent =
+    document.getElementById("currentScaling").textContent =
     `現在のダメージ倍率：${finalScaling}%`;
-}
+  }
 
-    document.getElementById("hitType").addEventListener("change", startRoute);
-    document.getElementById("starter").addEventListener("change", startRoute);
-    document.getElementById("hitState").addEventListener("change", startRoute);
-    document.getElementById("drive").addEventListener("change", startRoute);
-    document.getElementById("sa").addEventListener("change", startRoute);
-    document.getElementById("position").addEventListener("change", startRoute);
-  </script>
+  document.getElementById("hitType").addEventListener("change", startRoute);
+  document.getElementById("starter").addEventListener("change", startRoute);
+  document.getElementById("hitState").addEventListener("change", startRoute);
+  document.getElementById("drive").addEventListener("change", startRoute);
+  document.getElementById("sa").addEventListener("change", startRoute);
+  document.getElementById("position").addEventListener("change", startRoute);
+</script>
 
 </body>
 </html>
