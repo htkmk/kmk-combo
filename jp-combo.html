@@ -369,12 +369,26 @@
 
     function startRoute() {
       const starter = document.getElementById("starter").value;
+      const drive = document.getElementById("drive").value;
 
       resetRoute();
 
       if (starter === "") {
         return;
       }
+
+    if (starter === "インパクト" && Number(drive) <= 0) {
+      document.getElementById("currentRoute").textContent =
+      "ドライブゲージ0.0ではインパクトを始動技にできません。";
+
+      document.getElementById("currentDamage").textContent =
+      "現在のダメージ：0";
+
+      document.getElementById("currentScaling").textContent =
+      "現在のダメージ倍率：100%";
+
+      return;
+    }
 
       currentRoute.push(starter);
       
