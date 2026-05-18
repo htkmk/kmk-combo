@@ -113,8 +113,11 @@
       "端背負わせ"
     ];
 
-    const starterDamages = {
-      "インパクト": 800
+    const starterData = {
+      "インパクト": {
+        damage: 800,
+        scalingAdd: 20
+      }
     };
 
     const routes = [
@@ -445,25 +448,41 @@
 
     function updateDamage() {
       let total = 0;
+      let comboScaling = 0;
 
-      // 始動技ダメージ
-      if (currentRoute.length > 0) {
-        total += starterDamages[currentRoute[0]] || 0;
-      }
+      for (let i = 0; i < currentRoute.length; i++) {
+        let damage = 0;
 
-      // ルート技ダメージ
-      for (let i = 1; i < currentRoute.length; i++) {
-        const beforeRoute = currentRoute.slice(0, i);
-        const currentMove = currentRoute[i];
+        if (i === 0) {
+          const starter = starterData[currentRoute[0]];
+          damage = starter ? starter.damage : 0;
+        } else {
+          const beforeRoute = currentRoute.slice(0, i);
+          const currentMove = currentRoute[i];
 
-        const routeData = routes.find(route => {
-          return isSameRoute(route.route, beforeRoute) &&
-          route.to === currentMove;
-        });
+          const routeData = routes.find(route => {
+            return isSameRoute(route.route, beforeRoute) &&
+            route.to === currentMove;
+          });
 
-        if (routeData && routeData.damage) {
-          total += routeData.damage;
+          damage = routeData ? routeData.damage : 0;
         }
+
+        const scaledDamage = Math.floor(
+          damage * (100 - comboScaling) / 100
+        );
+
+        total += scaledDamage;
+
+        if (i === 0 && currentRoute[0] === "インパクト") {
+          comboScaling += 20;
+        }
+
+        if (i >= 2) {
+          comboScaling += 10;
+        }
+
+        comboScaling = Math.min(comboScaling, 90);
       }
 
       document.getElementById("currentDamage").textContent =
