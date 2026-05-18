@@ -469,8 +469,15 @@
           damage = routeData ? routeData.damage : 0;
         }
 
+        let appliedScaling = comboScaling;
+
+        // SA2は最低60%
+        if (currentMove === "SA2" && appliedScaling > 60) {
+          appliedScaling = 60;
+        }
+
         const scaledDamage = Math.floor(
-          damage * (100 - comboScaling) / 100
+          damage * (100 - appliedScaling) / 100
         );
 
         total += scaledDamage;
@@ -481,6 +488,9 @@
 
         if (i >= 2) {
           comboScaling += 10;
+        }
+        if (currentMove === "SA2") {
+          comboScaling += 25;
         }
 
         comboScaling = Math.min(comboScaling, 90);
