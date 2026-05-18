@@ -494,14 +494,22 @@
     // 最低10%
     appliedScaling = Math.max(appliedScaling, 10);
 
+    // SA1最低保証：30%以上のダメージ
+    if (currentMove === "SA1" && appliedScaling < 30) {
+      appliedScaling = 30;
+    }
+    
     // SA2最低保証：40%以上のダメージ
     if (currentMove === "SA2" && appliedScaling < 40) {
       appliedScaling = 40;
     }
 
-    // SA1最低保証：30%以上のダメージ
-    if (currentMove === "SA1" && appliedScaling < 30) {
-      appliedScaling = 30;
+    // SA3・CA最低保証：50%以上のダメージ
+    if (
+      (currentMove === "SA3" || currentMove === "CA") &&
+      appliedScaling < 50
+    ) {
+      appliedScaling = 50;
     }
 
     const scaledDamage = Math.floor(
