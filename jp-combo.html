@@ -369,7 +369,10 @@
       }
 
       currentRoute.push(starter);
+      
       updateRouteText();
+      updateDamage();
+      
       createNextSelect();
     }
 
@@ -407,7 +410,9 @@
 
         currentRoute = currentRoute.slice(0, selectIndex);
         currentRoute.push(this.value);
+        
         updateRouteText();
+        updateDamage();
 
         let next = select.nextSibling;
         while (next) {
