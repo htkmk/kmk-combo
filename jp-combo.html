@@ -453,13 +453,13 @@
 
       for (let i = 0; i < currentRoute.length; i++) {
         let damage = 0;
+        const currentMove = currentRoute[i];
 
         if (i === 0) {
           const starter = starterData[currentRoute[0]];
           damage = starter ? starter.damage : 0;
         } else {
           const beforeRoute = currentRoute.slice(0, i);
-          const currentMove = currentRoute[i];
 
           const routeData = routes.find(route => {
             return isSameRoute(route.route, beforeRoute) &&
@@ -471,10 +471,10 @@
 
         let appliedScaling = comboScaling;
 
-        // SA2は最低60%
         if (currentMove === "SA2" && appliedScaling > 60) {
           appliedScaling = 60;
         }
+
         if (currentMove === "SA1" && appliedScaling > 70) {
           appliedScaling = 70;
         }
@@ -492,6 +492,7 @@
         if (i >= 2) {
           comboScaling += 10;
         }
+
         if (currentMove === "SA2") {
           comboScaling += 25;
         }
@@ -501,7 +502,7 @@
 
       document.getElementById("currentDamage").textContent =
       `現在のダメージ：${total}`;
-      
+
       document.getElementById("currentScaling").textContent =
       `現在の補正値：${comboScaling}%`;
     }
