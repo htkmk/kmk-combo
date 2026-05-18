@@ -60,6 +60,7 @@
     <h2>現在のルート</h2>
     <p id="currentRoute">まだ始動技が選ばれていません。</p>
     <p id="currentDamage">現在のダメージ：0</p>
+    <p id="currentScaling">現在の補正値：0%</p>
   </div>
 
   <p><a href="classic-jp.html">← クラシックJPページに戻る</a></p>
@@ -487,6 +488,9 @@
 
       document.getElementById("currentDamage").textContent =
       `現在のダメージ：${total}`;
+      
+      document.getElementById("currentScaling").textContent =
+      `現在の補正値：${comboScaling}%`;
     }
 
     document.getElementById("hitType").addEventListener("change", startRoute);
