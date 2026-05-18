@@ -113,6 +113,10 @@
       "端背負わせ"
     ];
 
+    const starterDamages = {
+      "インパクト": 800
+    };
+
     const routes = [
       ...impactPanishMoves.map(move => ({
         route: ["インパクト"],
@@ -442,6 +446,12 @@
     function updateDamage() {
       let total = 0;
 
+      // 始動技ダメージ
+      if (currentRoute.length > 0) {
+        total += starterDamages[currentRoute[0]] || 0;
+      }
+
+      // ルート技ダメージ
       for (let i = 1; i < currentRoute.length; i++) {
         const beforeRoute = currentRoute.slice(0, i);
         const currentMove = currentRoute[i];
@@ -458,7 +468,7 @@
 
       document.getElementById("currentDamage").textContent =
       `現在のダメージ：${total}`;
-  }
+    }
 
     document.getElementById("hitType").addEventListener("change", startRoute);
     document.getElementById("starter").addEventListener("change", startRoute);
