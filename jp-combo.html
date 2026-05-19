@@ -455,6 +455,7 @@
     function updateDamage() {
       let total = 0;
       let finalScaling = 100;
+      let rushScalingActive = false;
 
       const specificSA2Route = [
         "インパクト",
@@ -468,6 +469,9 @@
     for (let i = 0; i < currentRoute.length; i++) {
       let damage = 0;
       const currentMove = currentRoute[i];
+      const isRushMove =
+      currentMove.includes("ラッシュ") ||
+      currentMove.includes("キャンセルラッシュ");
 
       if (i === 0) {
         const starter = starterData[currentRoute[0]];
@@ -548,9 +552,17 @@
         appliedScaling = 10;
       }
 
-      const scaledDamage = Math.floor(
+      if (isRushMove && i !== 0) {
+        rushScalingActive = true;
+      }
+
+      let scaledDamage = Math.floor(
         damage * appliedScaling / 100
       );
+
+      if (rushScalingActive) {
+        scaledDamage = Math.floor(scaledDamage * 0.85);
+      }
 
       total += scaledDamage;
 
