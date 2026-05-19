@@ -2,13 +2,13 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>クラシックJP コンボルート作成</title>
+  <title>クラシックJP コンボルート辞典</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <h1>クラシックJP コンボルート作成</h1>
+  <h1>クラシックJP コンボルート辞典</h1>
 
   <div class="combo-card">
     <h2>条件選択</h2>
@@ -95,16 +95,7 @@
       option.textContent = i.toFixed(1);
 
       saSelect.appendChild(option);
-    }
-    
-    const impactPanishMoves = [
-      "立ち小P", "立ち中P", "立ち大P",
-      "立ち小K", "立ち中K", "立ち大K",
-      "しゃがみ小P", "しゃがみ中P", "しゃがみ大P",
-      "しゃがみ小K", "しゃがみ中K", "しゃがみ大K",
-      "ジャンプ小P", "ジャンプ中P", "ジャンプ大P",
-      "ジャンプ小K", "ジャンプ中K", "ジャンプ大K"
-    ];
+    };
 
     const allPositions = [
       "端背負い",
@@ -122,17 +113,17 @@
     };
 
     const routes = [
-      ...impactPanishMoves.map(move => ({
+      //Dゲージ１本ルート
+      {
         route: ["インパクト"],
-        to: move,
+        to: "ジャンプ大K",
         damage: 800,
         hitType: ["地上ヒット"],
         hitState: ["パニカン"],
-        position: allPositions,
+        position: ["端背負わせ"],
         drive: 0,
         sa: 0
-      })),
-
+      },
       {
         route: ["インパクト", "ジャンプ大K"],
         to: "6大K",
@@ -322,7 +313,28 @@
         position: ["端背負わせ"],
         drive: 0,
         sa: 2.3
-      }
+      },
+      //Dゲージ２本ルート
+      {
+        route: ["インパクト"],
+        to: "ラッシュ6大K",
+        damage: 900,
+        hitType: ["地上ヒット"],
+        hitState: ["パニカン"],
+        position: ["端背負わせ"],
+        drive: 1.1,
+        sa: 0
+      },
+      {
+        route: ["インパクト", "ラッシュ6大K"],
+        to: "弱トルバラン",
+        damage: 800,
+        hitType: ["地上ヒット"],
+        hitState: ["パニカン"],
+        position: ["端背負わせ"],
+        drive: 1.1,
+        sa: 0
+      },
     ];
 
     let currentRoute = [];
